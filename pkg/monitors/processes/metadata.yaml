@@ -1,0 +1,7 @@
+monitors:
+- dimensions:
+  doc: |
+    Reports per-process statistics, such as CPU, memory, and disk usage.
+  metrics:
+  monitorType: processes
+  properties:

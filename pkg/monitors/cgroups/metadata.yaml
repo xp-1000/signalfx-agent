@@ -1,0 +1,216 @@
+monitors:
+- doc: |
+    Reports statistics about cgroups on Linux.  This only supports cgroups v1
+    and not the newer v2 unified implementation.
+  sendAll: true
+  metrics:
+
+    cgroup.cpu_shares:
+      default: false
+      type: gauge
+      group: cpu
+
+    cgroup.cpu_cfs_period_us:
+      default: false
+      type: gauge
+      group: cpu-cfs
+
+    cgroup.cpu_cfs_quota_us:
+      default: false
+      type: gauge
+      group: cpu-cfs
+
+    cgroup.cpu_stat_nr_periods:
+      default: false
+      group: cpu-cfs
+      type: cumulative
+
+    cgroup.cpu_stat_nr_throttled:
+      default: false
+      group: cpu-cfs
+      type: cumulative
+
+    cgroup.cpu_stat_throttled_time:
+      default: false
+      group: cpu-cfs
+      type: cumulative
+
+    cgroup.cpuacct_usage_ns:
+      default: true
+      type: cumulative
+      group: cpuacct
+
+    cgroup.cpuacct_usage_ns_per_cpu:
+      default: false
+      type: cumulative
+      group: cpuacct-per-cpu
+
+    cgroup.cpuacct_usage_user_ns:
+      default: false
+      type: cumulative
+      group: cpuacct
+      description:
+
+    cgroup.cpuacct_usage_user_ns_per_cpu:
+      default: false
+      type: cumulative
+      group: cpuacct-per-cpu
+      description:
+
+    cgroup.cpuacct_usage_system_ns:
+      default: false
+      type: cumulative
+      group: cpuacct
+      description:
+
+    cgroup.cpuacct_usage_system_ns_per_cpu:
+      default: false
+      type: cumulative
+      group: cpuacct-per-cpu
+      description:
+
+    cgroup.memory_stat_cache:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_rss:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_rss_huge:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_shmem:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_mapped_file:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_dirty:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_writeback:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_pgpgin:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_pgpgout:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_pgfault:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_pgmajfault:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_inactive_anon:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_active_anon:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_inactive_file:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_active_file:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_unevictable:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_hierarchical_memory_limit:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_cache:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_rss:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_rss_huge:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_shmem:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_mapped_file:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_dirty:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_writeback:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_pgpgin:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_total_pgpgout:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_total_pgfault:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_total_pgmajfault:
+      group: memory
+      type: cumulative
+
+    cgroup.memory_stat_total_inactive_anon:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_active_anon:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_inactive_file:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_active_file:
+      group: memory
+      type: gauge
+
+    cgroup.memory_stat_total_unevictable:
+      group: memory
+      type: gauge
+
+    cgroup.memory_limit_in_bytes:
+      group: memory
+      type: gauge
+
+    cgroup.memory_failcnt:
+      group: memory
+      type: cumulative
+
+  monitorType: cgroups
+  dimensions:
+    cpu:
+      description: For metrics that end with `_per_cpu`, this dimension will indicate which cpu the time series refers to.
+  properties:
