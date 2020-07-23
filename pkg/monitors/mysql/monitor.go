@@ -54,7 +54,7 @@ type Config struct {
 	// If true, queries will be logged at the info level.
 	LogQueries bool `yaml:"logQueries"`
 
-	// The number of top queries to consider when publishing query-related metric
+	// The number of top queries to consider when publishing query-related metrics
 	TopQueryLimit int `default:"10" yaml:"topQueryLimit"`
 }
 
