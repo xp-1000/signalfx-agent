@@ -1,0 +1,65 @@
+monitors:
+- doc: |
+    This is an embedded form of the [Telegraf Varnish
+    plugin](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/varnish).
+
+    Keep in mind this monitor will use `varnishstat` command so the signalfx-agent needs
+    to be run on the same host as the varnish server.
+
+    Also, signalfx-agent should have permission to run this command properly:
+
+    ```bash
+    usermod -a -G varnish signalfx-agent
+    ```
+
+    For more information check [telegraf official documentation](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/varnish#permissions)
+    but do not forget to adapt commands using `signalfx-agent` instead of `telegraf`.
+
+  dimensions:
+    plugin:
+      description: The plugin name "telegraf/mongodb".
+  metrics:
+    mongodb.member_status:
+      description: |
+        The type of the current node of the replica set collected from [serverStatus()]:
+          - 0 = "UNK" = unkown state [see mongo 
+          doc](https://docs.mongodb.com/manual/reference/replica-states/#replstate.UNKNOWN)
+          - 1 = "PRI" = `ismaster:true` [see mongo 
+          doc](https://docs.mongodb.com/manual/reference/command/serverStatus/#serverstatus.repl.ismaster)
+          - 2 = "SEC" = `secondary:true` [see mongo 
+          doc](https://docs.mongodb.com/manual/reference/command/serverStatus/#serverstatus.repl.secondary)
+          - 3 = "ARB" = arbiter only [see mongo 
+          doc](https://docs.mongodb.com/manual/reference/replica-states/#replstate.ARBITER)
+      default: true
+      type: gauge
+    mongodb.repl_state:
+      description: |
+        Replica set member state collected from [replSetGetStatus()](https://docs.mongodb.com/manual/reference/command/replSetGetStatus/#replSetGetStatus.members[n].state).
+      default: true
+      type: gauge
+    mongodb.repl_lag:
+      description: |
+        Replica lag in seconds calculated from the difference between the 
+        timestamp of the last oplog entry of primary and secondary [see mongo 
+        doc](https://docs.mongodb.com/manual/reference/command/replSetGetStatus/#replSetGetStatus.members[n].optimeDate).
+      default: true
+      type: gauge
+    mongodb.connections_current:
+      description: |
+        The number of incoming connections from clients to the database server.
+      default: true
+      type: gauge
+    mongodb.connections_available:
+      description: |
+        The number of unused incoming connections available. Consider this value 
+        in combination with the value of `mongodb.connections.current` to 
+        understand the connection load on the database.
+      default: true
+      type: gauge
+    mongodb.commands:
+      description: Commands.
+      default: true
+      type: gauge
+  monitorType: telegraf/mongodb
+  sendAll: false
+  properties:
